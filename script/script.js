@@ -4,8 +4,18 @@ const gameBord = function () {
     ["x", "o", "x"],
     ["o", "o", " x"],
   ];
-  return { bord };
+  const updateBord = (row, col, value) => {
+    bord[row][col] = value;
+    console.log(bord);
+  };
+  const getBord = () => {
+    return bord;
+  };
+  return { bord, getBord, updateBord };
 };
+gameBord().updateBord(0, 0, "A");
+console.log(gameBord().getBord());
+
 const renderBord = function () {
   let bord = gameBord().bord;
   let selectBordEl = document.querySelectorAll(".item");
@@ -18,4 +28,5 @@ const renderBord = function () {
     }
   }
 };
+
 renderBord();
