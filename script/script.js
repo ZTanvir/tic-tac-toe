@@ -4,10 +4,17 @@ const gameBord = function () {
     ["x", "o", "x"],
     ["o", "o", " x"],
   ];
-  return { bord };
+  const getBord = () => {
+    return bord;
+  };
+  const updateBord = (row, col, value) => {
+    bord[row][col] = value;
+  };
+  return { getBord, updateBord };
 };
 const renderBord = function () {
-  let bord = gameBord().bord;
+  let myGameBord = gameBord();
+  let bord = myGameBord.getBord();
   let selectBordEl = document.querySelectorAll(".item");
   let selectBordArr = [...selectBordEl];
   let bordCounter = 0;
