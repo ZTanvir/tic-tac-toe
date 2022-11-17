@@ -29,7 +29,7 @@ const playerMove = (symbol) => {
     let selectboardArr = [...selectboardEl];
     const ticboard = GameBoard();
     selectboardArr.forEach((box) => {
-        box.addEventListener("click", function (e) {
+        function bordUpdateOnClick(e) {
             console.log(e.target);
             // Only able to add item it no move has made to that box
             // means when the box is empty
@@ -42,10 +42,11 @@ const playerMove = (symbol) => {
                 console.log(ticboard.getboard());
                 renderboard(ticboard.getboard());
             }
-        });
+        }
+        box.addEventListener("click", bordUpdateOnClick);
     });
 };
-playerMove("-");
+playerMove("s");
 const Player = (playerName, playerSymbol) => {
     return { playerName, playerSymbol };
 };
