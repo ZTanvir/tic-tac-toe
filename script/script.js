@@ -1,4 +1,4 @@
-const gameboard = function () {
+const GameBoard = function () {
     let board = [
         ["", "", ""],
         ["", "", ""],
@@ -27,7 +27,7 @@ const renderboard = function (board) {
 const playerMove = (symbol) => {
     let selectboardEl = document.querySelectorAll(".item");
     let selectboardArr = [...selectboardEl];
-    const ticboard = gameboard();
+    const ticboard = GameBoard();
     selectboardArr.forEach((box) => {
         box.addEventListener("click", function (e) {
             console.log(e.target);
@@ -45,8 +45,12 @@ const playerMove = (symbol) => {
         });
     });
 };
-
 playerMove("-");
+const Player = (playerName, playerSymbol) => {
+    return { playerName, playerSymbol };
+};
+const player1 = Player("player1", "x");
+const player2 = Player("player2", "o");
 
-let mainboard = gameboard();
+let mainboard = GameBoard();
 renderboard(mainboard.getboard());
