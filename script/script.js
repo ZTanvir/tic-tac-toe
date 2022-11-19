@@ -65,8 +65,8 @@ playerMove(player2.playerSymbol);
 
 // Check row and column are same
 let gameLogic = [
-  ["x", "o", "x"],
-  ["o", "o", "o"],
+  ["o", "o", "x"],
+  ["o", "x", "o"],
   ["x", "o", "x"],
 ];
 // row check
@@ -78,7 +78,7 @@ for (let row of gameLogic) {
 // column check
 let i = 0;
 let j = 0;
-for (let round = 0; round < gameLogic.length; round++) {
+for (let round = 0; round < 3; round++) {
   if (!gameLogic[round].includes("")) {
     if (gameLogic[i][j] == gameLogic[i + 1][j]) {
       if (gameLogic[i + 1][j] == gameLogic[i + 2][j]) {
@@ -88,4 +88,30 @@ for (let round = 0; round < gameLogic.length; round++) {
     }
   }
   j++;
+}
+// cross check
+let k = 0;
+let l = 0;
+for (let round = 0; round < 2; round++) {
+  if (!gameLogic[round].includes("")) {
+    console.log("l value", l);
+    // check 00,11,22 index
+    if (l == 0) {
+      console.log("left kl", k, l);
+      if (gameLogic[k][l] == gameLogic[k + 1][l + 1]) {
+        if (gameLogic[k + 1][l + 1] == gameLogic[k + 2][l + 2]) {
+          console.log(gameLogic[k][l]);
+        }
+      }
+    } // check 02,11,20 index
+    else if (l == 2) {
+      console.log("right kl", k, l);
+      if (gameLogic[k][l] == gameLogic[k + 1][l - 1]) {
+        if (gameLogic[k + 1][l - 1] == gameLogic[k + 2][l - 2]) {
+          console.log(gameLogic[k][l]);
+        }
+      }
+    }
+  }
+  l += 2;
 }
