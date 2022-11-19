@@ -62,3 +62,30 @@ const Player = (playerName, playerSymbol) => {
 const player1 = Player("player1", "o");
 const player2 = Player("player2", "x");
 playerMove(player2.playerSymbol);
+
+// Check row and column are same
+let gameLogic = [
+  ["x", "o", "x"],
+  ["o", "o", "o"],
+  ["x", "o", "x"],
+];
+// row check
+for (let row of gameLogic) {
+  if (!(row.includes("o") && row.includes("x")) && !row.includes("")) {
+    console.log(row);
+  }
+}
+// column check
+let i = 0;
+let j = 0;
+for (let round = 0; round < gameLogic.length; round++) {
+  if (!gameLogic[round].includes("")) {
+    if (gameLogic[i][j] == gameLogic[i + 1][j]) {
+      if (gameLogic[i + 1][j] == gameLogic[i + 2][j]) {
+        console.log(gameLogic[i][j]);
+        break;
+      }
+    }
+  }
+  j++;
+}
