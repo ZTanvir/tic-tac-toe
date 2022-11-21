@@ -26,12 +26,13 @@ const renderboard = function (board) {
 // First player
 let counter = 1;
 const clickBoard = GameBoard();
+const winningMsgEl = document.querySelector(".winner-msg");
 
 const playerMove = (symbol) => {
   let selectboardEl = document.querySelectorAll(".item");
   let selectboardArr = [...selectboardEl];
   function bordUpdateOnClick(e) {
-    console.log(e.target);
+    // console.log(e.target);
     // Only able to add item it no move has made to that box
     // means when the box is empty
     if (e.target.textContent == "") {
@@ -46,9 +47,14 @@ const playerMove = (symbol) => {
         symbol = player2.playerSymbol;
       }
       clickBoard.updateboard(row, col, symbol);
-      console.log(clickBoard.getboard());
+      // console.log(clickBoard.getboard());
       counter++;
       renderboard(clickBoard.getboard());
+      let result = checkWinOrDraw(clickBoard.getboard());
+      console.log(result);
+      if (result != "" && typeof result != "undefined") {
+        winningMsgEl.textContent = `${result} is the winner`;
+      }
     }
   }
   selectboardArr.forEach((box) => {
@@ -64,31 +70,30 @@ const player2 = Player("player2", "x");
 playerMove(player2.playerSymbol);
 
 // Check row and column are same
-let gameLogic = [
-  ["o", "x", "x"],
-  ["o", "x", "x"],
-  ["x", "o", "o"],
-];
+// let gameBordArray = [
+//   ["o", "x", "o"],
+//   ["o", "x", "x"],
+//   ["o", "x", "o"],
+// ];
 const checkWinOrDraw = (gameBordArray) => {
   //row check
-  for (let row of gameLogic) {
+  for (let row of gameBordArray) {
     if (!(row.includes("o") && row.includes("x")) && !row.includes("")) {
       console.log("row check:", row);
-      return row;
+      return row[0];
     }
   }
   // column check
   let i = 0;
   let j = 0;
   for (let round = 0; round < 3; round++) {
-    if (!gameLogic[round].includes("")) {
-      if (gameLogic[i][j] == gameLogic[i + 1][j]) {
-        if (gameLogic[i + 1][j] == gameLogic[i + 2][j]) {
-          console.log("column check:", gameLogic[i][j]);
-          return gameLogic[i][j];
-        }
+    if (gameBordArray[i][j] == gameBordArray[i + 1][j]) {
+      if (gameBordArray[i + 1][j] == gameBordArray[i + 2][j]) {
+        console.log("column check:", gameBordArray[i][j]);
+        return gameBordArray[i][j];
       }
     }
+
     j++;
   }
   // cross check
@@ -97,18 +102,18 @@ const checkWinOrDraw = (gameBordArray) => {
   for (let round = 0; round < 2; round++) {
     // check 00,11,22 index
     if (l == 0) {
-      if (gameLogic[k][l] == gameLogic[k + 1][l + 1]) {
-        if (gameLogic[k + 1][l + 1] == gameLogic[k + 2][l + 2]) {
-          console.log("left cross", gameLogic[k][l]);
-          return gameLogic[k][l];
+      if (gameBordArray[k][l] == gameBordArray[k + 1][l + 1]) {
+        if (gameBordArray[k + 1][l + 1] == gameBordArray[k + 2][l + 2]) {
+          console.log("left cross", gameBordArray[k][l]);
+          return gameBordArray[k][l];
         }
       }
     } // check 02,11,20 index
     else if (l == 2) {
-      if (gameLogic[k][l] == gameLogic[k + 1][l - 1]) {
-        if (gameLogic[k + 1][l - 1] == gameLogic[k + 2][l - 2]) {
-          console.log("Right cross:", gameLogic[k][l]);
-          return gameLogic[k][l];
+      if (gameBordArray[k][l] == gameBordArray[k + 1][l - 1]) {
+        if (gameBordArray[k + 1][l - 1] == gameBordArray[k + 2][l - 2]) {
+          console.log("Right cross:", gameBordArray[k][l]);
+          return gameBordArray[k][l];
         }
       }
     }
@@ -116,51 +121,3 @@ const checkWinOrDraw = (gameBordArray) => {
     l += 2;
   }
 };
-let result = checkWinOrDraw(gameLogic);
-console.log(result);
-// // row check
-// for (let row of gameLogic) {
-//   if (!(row.includes("o") && row.includes("x")) && !row.includes("")) {
-//     console.log(row);
-//   }
-// }
-// // column check
-// let i = 0;
-// let j = 0;
-// for (let round = 0; round < 3; round++) {
-//   if (!gameLogic[round].includes("")) {
-//     if (gameLogic[i][j] == gameLogic[i + 1][j]) {
-//       if (gameLogic[i + 1][j] == gameLogic[i + 2][j]) {
-//         console.log(gameLogic[i][j]);
-//         break;
-//       }
-//     }
-//   }
-//   j++;
-// }
-// // cross check
-// let k = 0;
-// let l = 0;
-// for (let round = 0; round < 2; round++) {
-//   if (!gameLogic[round].includes("")) {
-//     console.log("l value", l);
-//     // check 00,11,22 index
-//     if (l == 0) {
-//       console.log("left kl", k, l);
-//       if (gameLogic[k][l] == gameLogic[k + 1][l + 1]) {
-//         if (gameLogic[k + 1][l + 1] == gameLogic[k + 2][l + 2]) {
-//           console.log(gameLogic[k][l]);
-//         }
-//       }
-//     } // check 02,11,20 index
-//     else if (l == 2) {
-//       console.log("right kl", k, l);
-//       if (gameLogic[k][l] == gameLogic[k + 1][l - 1]) {
-//         if (gameLogic[k + 1][l - 1] == gameLogic[k + 2][l - 2]) {
-//           console.log(gameLogic[k][l]);
-//         }
-//       }
-//     }
-//   }
-//   l += 2;
-// }
