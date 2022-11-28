@@ -52,7 +52,7 @@ const playerMove = (symbol) => {
       renderboard(clickBoard.getboard());
       let result = checkWinOrDraw(clickBoard.getboard());
       console.log(result);
-      if (result != "" && typeof result != "undefined") {
+      if (result !== "" && typeof result !== "undefined") {
         winningMsgEl.textContent = `${result} is the winner`;
       }
     }
@@ -71,9 +71,9 @@ playerMove(player2.playerSymbol);
 
 // Check row and column are same
 // let gameBordArray = [
-//   ["o", "x", "o"],
-//   ["o", "x", "x"],
-//   ["o", "x", "o"],
+//   ["", "x", "x"],
+//   ["", "", "x"],
+//   ["", "o", "x"],
 // ];
 const checkWinOrDraw = (gameBordArray) => {
   //row check
@@ -87,10 +87,13 @@ const checkWinOrDraw = (gameBordArray) => {
   let i = 0;
   let j = 0;
   for (let round = 0; round < 3; round++) {
+    console.log(i, j);
     if (gameBordArray[i][j] == gameBordArray[i + 1][j]) {
-      if (gameBordArray[i + 1][j] == gameBordArray[i + 2][j]) {
-        console.log("column check:", gameBordArray[i][j]);
-        return gameBordArray[i][j];
+      if (gameBordArray[i + 1][j] !== "") {
+        if (gameBordArray[i + 1][j] == gameBordArray[i + 2][j]) {
+          console.log("column check:", gameBordArray[i][j]);
+          return gameBordArray[i][j];
+        }
       }
     }
 
@@ -121,3 +124,5 @@ const checkWinOrDraw = (gameBordArray) => {
     l += 2;
   }
 };
+// let result = checkWinOrDraw(gameBordArray);
+// console.log(result);
