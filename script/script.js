@@ -1,3 +1,9 @@
+// First player
+// when counter = 1 => x , 0 => o
+let counter = 1;
+const clickBoard = GameBoard();
+const winningMsgEl = document.querySelector(".winner-msg");
+
 const GameBoard = function () {
   let board = [
     ["", "", ""],
@@ -23,11 +29,6 @@ const renderboard = function (board) {
     }
   }
 };
-// First player
-// when counter = 1 => x , 0 => o
-let counter = 1;
-const clickBoard = GameBoard();
-const winningMsgEl = document.querySelector(".winner-msg");
 
 const playerMove = (symbol) => {
   let selectboardEl = document.querySelectorAll(".item");
