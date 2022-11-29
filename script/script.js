@@ -24,6 +24,7 @@ const renderboard = function (board) {
   }
 };
 // First player
+// when counter = 1 => x , 0 => o
 let counter = 1;
 const clickBoard = GameBoard();
 const winningMsgEl = document.querySelector(".winner-msg");
@@ -50,10 +51,13 @@ const playerMove = (symbol) => {
       // console.log(clickBoard.getboard());
       counter++;
       renderboard(clickBoard.getboard());
-      let result = checkWinOrDraw(clickBoard.getboard());
+      let result = checkWin(clickBoard.getboard());
       console.log(result);
+      let draw = drawCheck(clickBoard.getboard());
       if (result !== "" && typeof result !== "undefined") {
         winningMsgEl.textContent = `${result} is the winner`;
+      } else if (draw) {
+        winningMsgEl.textContent = `Draw`;
       }
     }
   }
@@ -69,13 +73,7 @@ const player1 = Player("player1", "o");
 const player2 = Player("player2", "x");
 playerMove(player2.playerSymbol);
 
-// Check row and column are same
-// let gameBordArray = [
-//   ["", "x", "x"],
-//   ["", "", "x"],
-//   ["", "o", "x"],
-// ];
-const checkWinOrDraw = (gameBordArray) => {
+const checkWin = (gameBordArray) => {
   //row check
   for (let row of gameBordArray) {
     if (!(row.includes("o") && row.includes("x")) && !row.includes("")) {
@@ -87,7 +85,6 @@ const checkWinOrDraw = (gameBordArray) => {
   let i = 0;
   let j = 0;
   for (let round = 0; round < 3; round++) {
-    console.log(i, j);
     if (gameBordArray[i][j] == gameBordArray[i + 1][j]) {
       if (gameBordArray[i + 1][j] !== "") {
         if (gameBordArray[i + 1][j] == gameBordArray[i + 2][j]) {
@@ -124,5 +121,14 @@ const checkWinOrDraw = (gameBordArray) => {
     l += 2;
   }
 };
-// let result = checkWinOrDraw(gameBordArray);
-// console.log(result);
+
+const drawCheck = (gameBordArray) => {
+  for (let row of gameBordArray) {
+    for (let col of row) {
+      if (col === "") {
+        return false;
+      }
+    }
+  }
+  return true;
+};
