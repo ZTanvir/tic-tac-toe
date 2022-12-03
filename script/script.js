@@ -46,8 +46,10 @@ const playerMove = (symbol) => {
       // Change game symbol based on user turn number
       if (counter % 2 == 0) {
         symbol = player1.playerSymbol;
+        e.target.style.backgroundColor = "#69D3e9";
       } else if (counter % 2 != 0) {
         symbol = player2.playerSymbol;
+        e.target.style.backgroundColor = "#F48530";
       }
       clickBoard.updateboard(row, col, symbol);
       // console.log(clickBoard.getboard());

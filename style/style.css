@@ -1,14 +1,27 @@
+h1,p{
+    text-align: center;
+    color: #69D3e9;
+}
+.game-name{
+    color: #F48530;
+}
+.winner-msg{
+    height: 10px;
+}
 .container {
+    width: 300px;
+    margin: 50px auto;
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
-    background-color: #2196f3;
+    grid-template-columns: repeat(3,100px);
+    grid-template-rows: repeat(3,100px);
+    background-color: #facca9;
     padding: 10px;
 }
 .item {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.6);
     padding: 20px;
     font-size: 32px;
     text-align: center;
+    background-color: white;
 }
