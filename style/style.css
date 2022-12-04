@@ -1,6 +1,19 @@
-h1,p{
+:root{
+    --header-font-color :#69D3e9;
+}
+p{
     text-align: center;
-    color: #69D3e9;
+}
+.game-title{
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+.game-title > h1{
+    margin: 0;
+    font-size: 64px;
+    color: var(--header-font-color);
 }
 .game-name{
     color: #F48530;
