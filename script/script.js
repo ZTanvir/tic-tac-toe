@@ -18,6 +18,7 @@ const GameBoard = function () {
 let counter = 1;
 const clickBoard = GameBoard();
 const winningMsgEl = document.querySelector(".winner-msg");
+const playerTurnEl = document.querySelector(".player-turn");
 
 const renderboard = function (board) {
   let selectboardEl = document.querySelectorAll(".item");
@@ -47,9 +48,11 @@ const playerMove = (symbol) => {
       if (counter % 2 == 0) {
         symbol = player1.playerSymbol;
         e.target.style.backgroundColor = "#69D3e9";
+        playerTurnEl.textContent = `Player X's turn`;
       } else if (counter % 2 != 0) {
         symbol = player2.playerSymbol;
         e.target.style.backgroundColor = "#F48530";
+        playerTurnEl.textContent = `Player O's turn`;
       }
       clickBoard.updateboard(row, col, symbol);
       // console.log(clickBoard.getboard());
@@ -63,9 +66,9 @@ const playerMove = (symbol) => {
         selectboardArr.forEach((box) => {
           box.removeEventListener("click", bordUpdateOnClick);
         });
-        winningMsgEl.textContent = `${result} is the winner`;
+        winningMsgEl.textContent = `Player ${result} has won!`;
       } else if (draw) {
-        winningMsgEl.textContent = `Draw`;
+        winningMsgEl.textContent = `It's a draw!`;
       }
     }
   }
