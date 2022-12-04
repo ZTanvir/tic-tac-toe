@@ -59,6 +59,10 @@ const playerMove = (symbol) => {
       console.log(result);
       let draw = drawCheck(clickBoard.getboard());
       if (result !== "" && typeof result !== "undefined") {
+        // User won't able to give their move
+        selectboardArr.forEach((box) => {
+          box.removeEventListener("click", bordUpdateOnClick);
+        });
         winningMsgEl.textContent = `${result} is the winner`;
       } else if (draw) {
         winningMsgEl.textContent = `Draw`;
@@ -92,7 +96,6 @@ const checkWin = (gameBordArray) => {
     if (gameBordArray[i][j] == gameBordArray[i + 1][j]) {
       if (gameBordArray[i + 1][j] !== "") {
         if (gameBordArray[i + 1][j] == gameBordArray[i + 2][j]) {
-          console.log("column check:", gameBordArray[i][j]);
           return gameBordArray[i][j];
         }
       }
@@ -108,7 +111,6 @@ const checkWin = (gameBordArray) => {
     if (l == 0) {
       if (gameBordArray[k][l] == gameBordArray[k + 1][l + 1]) {
         if (gameBordArray[k + 1][l + 1] == gameBordArray[k + 2][l + 2]) {
-          console.log("left cross", gameBordArray[k][l]);
           return gameBordArray[k][l];
         }
       }
@@ -116,7 +118,6 @@ const checkWin = (gameBordArray) => {
     else if (l == 2) {
       if (gameBordArray[k][l] == gameBordArray[k + 1][l - 1]) {
         if (gameBordArray[k + 1][l - 1] == gameBordArray[k + 2][l - 2]) {
-          console.log("Right cross:", gameBordArray[k][l]);
           return gameBordArray[k][l];
         }
       }
