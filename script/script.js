@@ -19,6 +19,8 @@ let counter = 1;
 const clickBoard = GameBoard();
 const winningMsgEl = document.querySelector(".winner-msg");
 const playerTurnEl = document.querySelector(".player-turn");
+const restartBtn = document.querySelector(".restart-btn");
+const startBtn = document.querySelector(".start-game");
 
 const renderboard = function (board) {
   let selectboardEl = document.querySelectorAll(".item");
@@ -82,7 +84,7 @@ const Player = (playerName, playerSymbol) => {
 };
 const player1 = Player("player1", "o");
 const player2 = Player("player2", "x");
-playerMove(player2.playerSymbol);
+// playerMove(player2.playerSymbol);
 
 const checkWin = (gameBordArray) => {
   //row check
@@ -140,3 +142,9 @@ const drawCheck = (gameBordArray) => {
   }
   return true;
 };
+
+startBtn.addEventListener("click", () => {
+  playerMove(player2.playerSymbol);
+});
+
+restartBtn.addEventListener("click", () => {});
