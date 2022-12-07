@@ -10,7 +10,14 @@ const GameBoard = function () {
   const updateboard = (row, col, value) => {
     board[row][col] = value;
   };
-  return { getboard, updateboard };
+  const resetBoard = () => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < 3; j++) {
+        board[i][j] = "";
+      }
+    }
+  };
+  return { getboard, updateboard, resetBoard };
 };
 
 // First player
@@ -20,7 +27,6 @@ const clickBoard = GameBoard();
 const winningMsgEl = document.querySelector(".winner-msg");
 const playerTurnEl = document.querySelector(".player-turn");
 const restartBtn = document.querySelector(".restart-btn");
-const startBtn = document.querySelector(".start-game");
 
 const renderboard = function (board) {
   let selectboardEl = document.querySelectorAll(".item");
@@ -84,7 +90,6 @@ const Player = (playerName, playerSymbol) => {
 };
 const player1 = Player("player1", "o");
 const player2 = Player("player2", "x");
-// playerMove(player2.playerSymbol);
 
 const checkWin = (gameBordArray) => {
   //row check
@@ -143,8 +148,18 @@ const drawCheck = (gameBordArray) => {
   return true;
 };
 
-startBtn.addEventListener("click", () => {
+playerMove(player2.playerSymbol);
+
+restartBtn.addEventListener("click", () => {
+  clickBoard.resetBoard();
+  renderboard(clickBoard.getboard());
+  const removeBgColor = () => {
+    let selectboardEl = document.querySelectorAll(".item");
+    let selectboardArr = [...selectboardEl];
+    for (let item of selectboardArr) {
+      item.style.backgroundColor = "white";
+    }
+  };
+  removeBgColor();
   playerMove(player2.playerSymbol);
 });
-
-restartBtn.addEventListener("click", () => {});
