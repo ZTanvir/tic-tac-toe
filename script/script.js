@@ -152,7 +152,6 @@ playerMove(player2.playerSymbol);
 
 restartBtn.addEventListener("click", () => {
   clickBoard.resetBoard();
-  renderboard(clickBoard.getboard());
   const removeBgColor = () => {
     let selectboardEl = document.querySelectorAll(".item");
     let selectboardArr = [...selectboardEl];
@@ -161,5 +160,6 @@ restartBtn.addEventListener("click", () => {
     }
   };
   removeBgColor();
+  renderboard(clickBoard.getboard());
   playerMove(player2.playerSymbol);
 });

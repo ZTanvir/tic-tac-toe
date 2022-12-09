@@ -1,50 +1,65 @@
-:root{
-    --header-font-color :#69D3e9;
+:root {
+  --blue: #69d3e9;
+  --orange: #f48530;
+  --light-orange: #facca9;
 }
-p{
-    text-align: center;
+button {
+  font-family: inherit;
+  font-size: 100%;
 }
-.game-title{
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;   
+p {
+  text-align: center;
 }
-.game-title > h1{
-    margin: 0;
-    font-size: 64px;
-    color: var(--header-font-color);
+.game-title {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.game-name{
-    color: #F48530;
+.game-title > h1 {
+  margin: 0;
+  font-size: 64px;
+  color: var(--blue, cornflowerblue);
 }
-.winner-msg{
-    height: 10px;
+.game-name {
+  color: var(--orange, orange);
+}
+.winner-msg {
+  height: 10px;
 }
 .container {
-    width: 300px;
-    margin: 50px auto;
-    display: grid;
-    grid-template-columns: repeat(3,100px);
-    grid-template-rows: repeat(3,100px);
-    background-color: #facca9;
-    padding: 10px;
+  position: relative;
+  width: 300px;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  background-color: var(--light-orange, lightsalmon);
+  padding: 10px;
 }
 .item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    font-size: 32px;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  font-size: 32px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.play-again{
-    display: flex;
-    justify-content: center;
+.play-again {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.restart-btn{
-    padding: 10px 20px;
+.restart-btn {
+  padding: 10px 20px;
 }
