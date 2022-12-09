@@ -2,6 +2,7 @@
   --blue: #69d3e9;
   --orange: #f48530;
   --light-orange: #facca9;
+  --white: white;
 }
 button {
   font-family: inherit;
@@ -26,7 +27,9 @@ p {
   color: var(--orange, orange);
 }
 .winner-msg {
-  height: 10px;
+  font-size: 32px;
+  text-transform: capitalize;
+  color: var(--white);
 }
 .container {
   position: relative;
@@ -43,7 +46,7 @@ p {
   border: 1px solid rgba(0, 0, 0, 0.6);
   padding: 20px;
   font-size: 32px;
-  background-color: white;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,11 +58,17 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .restart-btn {
   padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--white);
+}
+.result-msg {
+  display: flex;
 }

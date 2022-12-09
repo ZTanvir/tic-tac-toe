@@ -27,6 +27,7 @@ const clickBoard = GameBoard();
 const winningMsgEl = document.querySelector(".winner-msg");
 const playerTurnEl = document.querySelector(".player-turn");
 const restartBtn = document.querySelector(".restart-btn");
+const playAgain = document.querySelector(".play-again");
 
 const renderboard = function (board) {
   let selectboardEl = document.querySelectorAll(".item");
@@ -52,6 +53,7 @@ const playerMove = (symbol) => {
       boxIndex = boxIndex.split("");
       let row = Number(boxIndex[0]);
       let col = Number(boxIndex[1]);
+
       // Change game symbol based on user turn number
       if (counter % 2 == 0) {
         symbol = player1.playerSymbol;
@@ -69,14 +71,26 @@ const playerMove = (symbol) => {
       let result = checkWin(clickBoard.getboard());
       console.log(result);
       let draw = drawCheck(clickBoard.getboard());
+
       if (result !== "" && typeof result !== "undefined") {
         // User won't able to give their move
         selectboardArr.forEach((box) => {
           box.removeEventListener("click", bordUpdateOnClick);
         });
-        winningMsgEl.textContent = `Player ${result} has won!`;
+        // Publish result on a modal,on top off gameboard
+        if (result === "x") {
+          winningMsgEl.textContent = `Player ${result} has won!`;
+          playAgain.classList.toggle("result-msg");
+          playAgain.style.backgroundColor = "#F48530";
+        } else if (result === "o") {
+          winningMsgEl.textContent = `Player ${result} has won!`;
+          playAgain.classList.toggle("result-msg");
+          playAgain.style.backgroundColor = "#69D3e9";
+        }
       } else if (draw) {
         winningMsgEl.textContent = `It's a draw!`;
+        playAgain.classList.toggle("result-msg");
+        playAgain.style.backgroundColor = "#facca9";
       }
     }
   }
@@ -151,6 +165,7 @@ const drawCheck = (gameBordArray) => {
 playerMove(player2.playerSymbol);
 
 restartBtn.addEventListener("click", () => {
+  playAgain.classList.toggle("result-msg");
   clickBoard.resetBoard();
   const removeBgColor = () => {
     let selectboardEl = document.querySelectorAll(".item");
