@@ -4,6 +4,14 @@
   --light-orange: #facca9;
   --white: white;
 }
+body {
+  /* 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh; */
+  background-color: azure;
+}
 button {
   font-family: inherit;
   font-size: 100%;
@@ -29,7 +37,7 @@ p {
 .winner-msg {
   font-size: 32px;
   text-transform: capitalize;
-  color: var(--white);
+  color: var(--white, white);
 }
 .container {
   position: relative;
@@ -46,7 +54,7 @@ p {
   border: 1px solid rgba(0, 0, 0, 0.6);
   padding: 20px;
   font-size: 32px;
-  background-color: var(--white);
+  background-color: var(--white, white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +75,7 @@ p {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: var(--white);
+  background-color: var(--white, white);
 }
 .result-msg {
   display: flex;
