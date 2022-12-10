@@ -1,0 +1,21 @@
+:root {
+  --blue: #69d3e9;
+  --orange: #f48530;
+  --light-orange: #facca9;
+  --white: white;
+  --purple: #fc5185;
+  --gray: #364f6b;
+}
+.game-title {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.game-title > h1 {
+  margin: 0;
+  font-size: 64px;
+  color: var(--gray, cornflowerblue);
+  text-shadow: 1px 3px 0px rgba(252, 81, 133, 0.38);
+}
