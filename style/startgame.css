@@ -54,12 +54,23 @@ button {
 .ai-btn {
   background-color: var(--purple);
 }
-.players-btn {
-  background-color: var(--gray);
+.ai-btn:hover,
+.ai-btn:focus {
+  background-color: var(--white);
+  color: var(--purple);
 }
+.players-btn,
 .play-now-btn {
   background-color: var(--gray);
 }
+.players-btn:hover,
+.play-now-btn:hover,
+.players-btn:focus,
+.players-btn:focus {
+  background-color: var(--white);
+  color: var(--gray);
+}
+
 #btn-icons {
   margin-left: 5px;
 }
