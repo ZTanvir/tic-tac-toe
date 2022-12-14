@@ -19,15 +19,27 @@ const GameBoard = function () {
   };
   return { getboard, updateboard, resetBoard };
 };
+let firstPlayerName = localStorage.getItem("player1Name");
+let secondPlayerName = localStorage.getItem("player2Name");
+console.log(firstPlayerName, secondPlayerName);
 
 // First player
 // when counter = 1 => x , 0 => o
-let counter = 1;
+let counter = 0;
 const clickBoard = GameBoard();
 const winningMsgEl = document.querySelector(".winner-msg");
 const playerTurnEl = document.querySelector(".player-turn");
 const restartBtn = document.querySelector(".restart-btn");
 const playAgain = document.querySelector(".play-again");
+
+const Player = (playerName, playerSymbol) => {
+  return { playerName, playerSymbol };
+};
+const player1 = Player(firstPlayerName, "x");
+const player2 = Player(secondPlayerName, "o");
+console.log(player1.playerName, player2.playerName);
+
+playerTurnEl.textContent = `${player1.playerName}'s turn symbol ${player1.playerSymbol}`;
 
 const renderboard = function (board) {
   let selectboardEl = document.querySelectorAll(".item");
@@ -58,11 +70,11 @@ const playerMove = (symbol) => {
       if (counter % 2 == 0) {
         symbol = player1.playerSymbol;
         e.target.style.backgroundColor = "#69D3e9";
-        playerTurnEl.textContent = `Player X's turn`;
+        playerTurnEl.textContent = `${player2.playerName}'s turn ${player2.playerSymbol}`;
       } else if (counter % 2 != 0) {
         symbol = player2.playerSymbol;
         e.target.style.backgroundColor = "#F48530";
-        playerTurnEl.textContent = `Player O's turn`;
+        playerTurnEl.textContent = `${player1.playerName}'s turn ${player1.playerSymbol}`;
       }
       clickBoard.updateboard(row, col, symbol);
       // console.log(clickBoard.getboard());
@@ -79,13 +91,13 @@ const playerMove = (symbol) => {
         });
         // Publish result on a modal,on top off gameboard
         if (result === "x") {
-          winningMsgEl.textContent = `Player ${result} has won!`;
-          playAgain.classList.toggle("result-msg");
-          playAgain.style.backgroundColor = "#F48530";
-        } else if (result === "o") {
-          winningMsgEl.textContent = `Player ${result} has won!`;
+          winningMsgEl.textContent = `${player2.playerName} has won!`;
           playAgain.classList.toggle("result-msg");
           playAgain.style.backgroundColor = "#69D3e9";
+        } else if (result === "o") {
+          winningMsgEl.textContent = `${player2.playerName} has won!`;
+          playAgain.classList.toggle("result-msg");
+          playAgain.style.backgroundColor = "#69D3e9#F48530";
         }
       } else if (draw) {
         winningMsgEl.textContent = `It's a draw!`;
@@ -99,11 +111,6 @@ const playerMove = (symbol) => {
   });
 };
 
-const Player = (playerName, playerSymbol) => {
-  return { playerName, playerSymbol };
-};
-const player1 = Player("player1", "o");
-const player2 = Player("player2", "x");
 
 const checkWin = (gameBordArray) => {
   //row check

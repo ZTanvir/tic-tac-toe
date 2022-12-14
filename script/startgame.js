@@ -4,18 +4,24 @@ const twoPlayersBtn = document.querySelector(".two-players");
 const inputFields = document.querySelector(".player-names");
 const playNowSection = document.querySelector(".play-now");
 const playNowBtn = document.querySelector(".play-now-btn");
+localStorage.clear();
+
 
 let player1Name = "";
 let player2Name = "";
-console.log(inputFields, playNowSection, playNowBtn);
 
-
-twoPlayersBtn.addEventListener("click", () => {
-    inputFields.classList.toggle("hide-input-btn");
-    playNowSection.classList.toggle("hide-input-btn");
-})
-playNowBtn.addEventListener("click", () => {
-    player1Name = player1input.value;
-    player2Name = player2input.value;
-    console.log(player1Name, player2Name);
-})
+const hideBtn = (() => {
+    twoPlayersBtn.addEventListener("click", () => {
+        inputFields.classList.toggle("hide-input-btn");
+        playNowSection.classList.toggle("hide-input-btn");
+    })
+})()
+const getName = (() => {
+    playNowBtn.addEventListener("click", () => {
+        player1Name = player1input.value;
+        player2Name = player2input.value;
+        localStorage.setItem("player1Name", player1Name);
+        localStorage.setItem("player2Name", player2Name);
+        console.log(player1Name, player2Name);
+    })
+})()
