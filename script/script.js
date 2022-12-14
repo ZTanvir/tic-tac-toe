@@ -69,12 +69,12 @@ const playerMove = (symbol) => {
       // Change game symbol based on user turn number
       if (counter % 2 == 0) {
         symbol = player1.playerSymbol;
-        e.target.style.backgroundColor = "#69D3e9";
-        playerTurnEl.textContent = `${player2.playerName}'s turn ${player2.playerSymbol}`;
+        e.target.style.backgroundColor = "#F48530";
+        playerTurnEl.textContent = `${player2.playerName}'s turn symbol ${player2.playerSymbol}`;
       } else if (counter % 2 != 0) {
         symbol = player2.playerSymbol;
-        e.target.style.backgroundColor = "#F48530";
-        playerTurnEl.textContent = `${player1.playerName}'s turn ${player1.playerSymbol}`;
+        e.target.style.backgroundColor = "#69D3e9";
+        playerTurnEl.textContent = `${player1.playerName}'s turn symbol ${player1.playerSymbol}`;
       }
       clickBoard.updateboard(row, col, symbol);
       // console.log(clickBoard.getboard());
@@ -91,18 +91,24 @@ const playerMove = (symbol) => {
         });
         // Publish result on a modal,on top off gameboard
         if (result === "x") {
-          winningMsgEl.textContent = `${player2.playerName} has won!`;
+          winningMsgEl.textContent = `${player1.playerName} has won!`;
           playAgain.classList.toggle("result-msg");
-          playAgain.style.backgroundColor = "#69D3e9";
+          playAgain.style.backgroundColor = "#F48530";
+          counter = 0;
+          playerTurnEl.textContent = "";
         } else if (result === "o") {
           winningMsgEl.textContent = `${player2.playerName} has won!`;
           playAgain.classList.toggle("result-msg");
-          playAgain.style.backgroundColor = "#69D3e9#F48530";
+          playAgain.style.backgroundColor = "#69D3e9";
+          counter = 0;
+          playerTurnEl.textContent = "";
         }
       } else if (draw) {
         winningMsgEl.textContent = `It's a draw!`;
         playAgain.classList.toggle("result-msg");
         playAgain.style.backgroundColor = "#facca9";
+        counter = 0;
+        playerTurnEl.textContent = "";
       }
     }
   }
@@ -184,4 +190,6 @@ restartBtn.addEventListener("click", () => {
   removeBgColor();
   renderboard(clickBoard.getboard());
   playerMove(player2.playerSymbol);
+  playerTurnEl.textContent = `${player1.playerName}'s turn symbol ${player1.playerSymbol}`;
+
 });
