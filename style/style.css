@@ -70,6 +70,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 0.9;
 }
 .restart-btn {
     padding: 10px 20px;

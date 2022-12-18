@@ -21,7 +21,6 @@ const getName = (() => {
         player2Name = player2input.value;
         localStorage.setItem("player1Name", player1Name);
         localStorage.setItem("player2Name", player2Name);
-        console.log(player1Name, player2Name);
     });
 })();
 
